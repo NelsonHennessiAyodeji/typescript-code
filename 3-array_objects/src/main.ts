@@ -28,6 +28,8 @@ bands.push("Dave"); // correct
 
 // lenght and order of array do not matter for Arrays
 
+
+
 // Tuples a strict is array that has a fixed type for the array with specific positions and lenght. 
 
 let myTuple: [string, number, boolean] = ["dave", 63, true]; // This is a tuple with string number and boolean. Has 3 slots.
