@@ -103,3 +103,5 @@ getInventoryValue()
 // values later on. When I print the first one, I should get the current instance or valus of the first
 // log, instead I get the updated versions down to the last removeProduct() call right from the 
 // very fist logging of the invetory.
+
+// Because the browser prints the refrence of the array which is already affected
