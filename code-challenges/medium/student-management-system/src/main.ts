@@ -212,6 +212,8 @@ const addStudent = (firstName: string, lastName: string, age: number, gender: Ge
     }
 
     students.push(newStudent);
+    console.log("New student added");
+    console.log(newStudent);
 }
 
 // Remove Student
@@ -219,6 +221,7 @@ const removeStudent = (id: number) => {
     const student = students.find(st => st.id === id);
     if (student) {
         students.splice(students.indexOf(student), 1);
+        console.log(`Student with ID: ${id} has been removed`);
     } else {
         console.log("No student with this id exists");            
     }
@@ -324,7 +327,7 @@ const findHighestCgpa = (): Student[] => {
 }
 
 // Find lowest CGPA
-const findLowestCpa = (): Student[] => {
+const findLowestCgpa = (): Student[] => {
     let lowestCgpa = 4;
     for (let i: number = 0; i < students.length; i++) {
         if ((students[i]?.cgpa ?? 0) <= lowestCgpa) {
@@ -349,14 +352,72 @@ const findAverageCgpa = () => {
 }
 
 // Sort students by CGPA
+const sortStudentsByCgpa = (): Student[] => {
+    const sortedStudents = [...students].sort((a, b) => a.cgpa - b.cgpa);
+    return sortedStudents;
+}
 
-
-// Sort students alphabetically
+// Sort students alphabetically (I'll go with name)
+const sortStudentsByName = (): Student[] => {
+    const sortedStudents = [...students].sort((a, b) => a.firstName.localeCompare(b.firstName));
+    return sortedStudents;
+}
 
 // Print a student's full profile
+const printStudentProfile = (id: number) => {
+    const student = findStudentById(id);
+    console.log(student);
+}
 
 // Change student level
+const changeStudentLevel = (id: number, level: StudentLevel) => {
+    const student = findStudentById(id);
+    if (!student) return;
+    student.level = level;
+}
 
 // Graduate a student
+const graduateStudent = (id: number) => {
+    const student = findStudentById(id);
+    if (!student) return;
+    if (student.level !== StudentLevel.Graduate) {
+        student.level = StudentLevel.Graduate;
+        console.log(student);
+    } else {
+        console.log("Student is already graduated");
+    }
+}
 
 // Deactivate a student
+const deactivateStudent = (id: number) => {
+    const student = findStudentById(id);
+    if (!student) return;
+    student.isActive = false;
+    console.log(student);    
+}
+
+addStudent("Danny", "Brian", 24, Gender.Male, StudentLevel.fourHundred, 
+    {street: "12 Pine Rd", city: "Boston", state: "Massachusetts", country: "USA"},
+    [{courseCode: "MAT201", courseTitle: "Linear Algebra", units: 3}], ["Sarah", "Mother", 555014],
+    true, 3.5
+);
+removeStudent(104);
+console.log(findStudentByLastname("Dyer"));
+// console.log(listAllSecondYearStudents());
+// console.log(listCgpaAboveThree());
+registerCourse(112, "MTH111", "Algebra", 3);
+dropCourse(112, "ARC302");
+console.log(findStudentById(112));
+console.log(countTotalStudents());
+// console.log(countMaleStudents());
+// console.log(countFemaleStudents());
+console.log(findHighestCgpa());
+console.log(findLowestCgpa());
+console.log(findAverageCgpa())
+// console.log(sortStudentsByCgpa());
+// console.log(sortStudentsByName());
+changeStudentLevel(120, StudentLevel.fourHundred)
+graduateStudent(120);
+deactivateStudent(105);
+// printStudentProfile(105);
+// console.log(students);
