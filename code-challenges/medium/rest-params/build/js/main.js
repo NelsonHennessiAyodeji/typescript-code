@@ -1,0 +1,13 @@
+// Find the Highest Number
+const findHighest = (...num) => {
+    let highest = 0;
+    for (let i = 0; i < num.length; i++) {
+        if (num[i] >= highest) {
+            highest = num[i];
+        }
+    }
+    return highest;
+};
+console.log((findHighest(10, 98, 65, 83, 43, 38, 42, 39, 53, 73, 82, 73, 64)));
+export {};
+//# sourceMappingURL=main.js.map
