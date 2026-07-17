@@ -12,7 +12,7 @@ type Guitarist = {
 
 type UserId = stringOrNumber
 
-// ?? We canot do this with an interface
+// We canot do this with an interface
 // interface PostId = stringOrNumber; // Will not work beacuse interfaces are like objects or classes or something
 
 // Meanwhile types are types or aliases of any type script type we might assign
