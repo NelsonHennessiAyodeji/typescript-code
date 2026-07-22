@@ -88,3 +88,80 @@ accoutn3.withdraw(40000);
 console.log(accoutn1.checkBalance());
 console.log(accoutn2.checkBalance());
 console.log(accoutn3.checkBalance());
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Library System
+class Book {
+    private static bookList: Book[] = [];
+
+    constructor(public id: number, public title: string, public author: string, public available: boolean) {
+        Book.bookList.push(this);
+    }
+
+    public borrowBook(id: number) {
+        const book = Book.bookList.find(b => b.id === id);
+        if (book?.available) {
+            book.available = false;
+            return `You have now rented the book: ${book.title}`;
+        } else if (!book?.available) {
+            return `The book has been rented`;
+        } else {
+            return "Book deos not exist";
+        }
+    }
+
+    public returnBook(id: number) {
+        const book = Book.bookList.find(b => b.id === id);
+        if (book?.available) {
+            return `The book has not been rented`;
+        } else if (!book?.available) {
+            book!.available = true;
+            return `You have returned the book: ${book?.title}`;
+        } else {
+            throw new Error("Book nto found");
+        }
+    }
+
+    public displayInfo(id?: number) {
+        if (!id) {
+            for (let i: number = 0; i < Book.bookList.length; i++) {
+                console.log(`
+                    Title: ${Book.bookList[i]!.title}
+                    Author: ${Book.bookList[i]!.author}
+                    Available: ${Book.bookList[i]!.available? "Yes" : "No"}
+                    `
+                );                
+            }
+        } else if (id) {
+            const book = Book.bookList.find(b => b.id === id);
+            if (book) {
+                console.log(`
+                    Title: ${book.title}
+                    Author: ${book.author}
+                    Available: ${book.available? "Yes" : "No"}
+                    `
+                );  
+            } else {
+                throw new Error("Book nto found");
+            }
+        }
+    }
+}
+
+const book1: Book = new Book(1, "Macky", "NT Wright", true);
+const book2: Book = new Book(2, "Sunday", "Chris Jericho", false);
+const book3: Book = new Book(3, "Ice Cream", "Steven Rogers", true);
+const book4: Book = new Book(4, "Religion", "Saint Basil The Great", false);
+const book5: Book = new Book(5, "Minds", "MAcky Marrison", false);
+const book6: Book = new Book(6, "Musicology", "Sam Shamoun", true);
+const book7: Book = new Book(7, "Students Of Old", "Jay Dyer", false);
+const book8: Book = new Book(8, "Raised", "Kelly Power", true);
+
+console.log(book1.borrowBook(4));
+console.log(book2.borrowBook(1));
+console.log(book1.returnBook(1));
+console.log(book3.borrowBook(1));
+book8.displayInfo(3);
