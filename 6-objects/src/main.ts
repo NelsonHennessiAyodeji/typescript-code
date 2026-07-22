@@ -22,7 +22,8 @@ class Coder {
     // age: number;
     // lang: string; Same thin applies here too
 
-    secondLang!: string // This "!" is a way of letting the class know that this it does not need to be initialised or identified right away
+    secondLang!: string // This "!" is a way of letting the class know that this it does not need to be initialised
+    // or identified right away
     // It is not advicable for begginers, probably best to use when all chips are down or some unique logic
 
     // Readonly means it cannot be changed after being assigned

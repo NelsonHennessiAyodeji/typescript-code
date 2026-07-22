@@ -45,3 +45,46 @@ console.log(product1.InventoryValue());
 console.log(product2.InventoryValue());
 console.log(product3.InventoryValue());
 console.log(product4.InventoryValue());
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Bank Account
+class BankAccount {
+    constructor(public accountNumber: number, public owner: string, public balance: number) {
+        this.accountNumber = accountNumber;
+        this.owner = owner;
+        this.balance = balance;
+    }
+
+    public deposit(amount: number): void {
+        if (amount > 0) {
+            this.balance += amount
+        } else {
+            throw new Error("Must deposit more than 0");
+        }
+    }
+
+    public withdraw(amount: number): void {
+        if ((amount > 0) && !(amount > this.balance)) {
+            this.balance -= amount;
+        } else {
+            throw new Error("Can only withdraw available funds");
+        }
+    }
+
+    public checkBalance(): number {
+        return this.balance;
+    }
+}
+
+const accoutn1: BankAccount = new BankAccount(2415416278, "Dave", 200000);
+const accoutn2: BankAccount = new BankAccount(2455416278, "Tims", 80000);
+const accoutn3: BankAccount = new BankAccount(2425416278, "Ty", 140000);
+
+accoutn1.withdraw(100000);
+accoutn2.deposit(20000);
+accoutn3.withdraw(40000);
+
+console.log(accoutn1.checkBalance());
+console.log(accoutn2.checkBalance());
+console.log(accoutn3.checkBalance());
