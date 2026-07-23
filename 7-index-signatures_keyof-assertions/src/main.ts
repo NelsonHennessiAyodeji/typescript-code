@@ -23,7 +23,7 @@ const todaysTransactions: TransactionObj = {
     Pizza: -3,
     Books: -4,
     Job: 78,
-    Dave: 3, // Pizza, Books, and Job are required because of the readonly. Dave is not required.
+    Dave: 3, // Pizza, Books, and Job are required. Dave is not required. But readonly make sure they are not chnaged after
 }
 
 console.log(todaysTransactions.Pizza);
