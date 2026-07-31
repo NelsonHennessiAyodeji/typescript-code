@@ -118,11 +118,11 @@ const student4 = {
 };
 const studentTable = new DataTable();
 studentTable.addRow(student1);
-console.log(studentTable.getRows(student1));
 class StoreService {
     items = [];
     create(item) {
         this.items.push(item);
+        console.log("Created: " + (item.name ? item.name : "Order Item"));
     }
     findById(id) {
         const item = this.items.find(i => i.id === id);
@@ -135,14 +135,19 @@ class StoreService {
         const item = this.findById(id);
         const index = this.items.indexOf(item, 0);
         this.items[index] = updatedItem;
+        console.log(`Updated: ${typeof updatedItem} #${item.id}`);
     }
     delete(id) {
+        console.log(typeof this.items);
         const item = this.findById(id);
         const index = this.items.indexOf(item, 0);
-        delete this.items[index];
+        this.items.splice(index, 1);
+        console.log(`Deleted: ${typeof this.items[0]} #${id}`);
     }
     getAll() {
-        return this.items;
+        return `
+        Remaining ${typeof this.items}s:
+        ${console.log(this.items)}`;
     }
     count() {
         return this.items.length;
@@ -152,5 +157,40 @@ const productService = new StoreService();
 const customerService = new StoreService();
 const orderService = new StoreService();
 productService.create({ id: 1, name: "Cookies" });
+productService.create({ id: 2, name: "Laptop" });
+productService.create({ id: 3, name: "Smartphone" });
+productService.create({ id: 4, name: "Wireless Mouse" });
+productService.create({ id: 5, name: "Mechanical Keyboard" });
+productService.create({ id: 6, name: "Gaming Headset" });
+productService.create({ id: 7, name: "USB Flash Drive" });
+productService.create({ id: 8, name: "Portable Charger" });
+customerService.create({ id: 1, name: "Stan" });
+customerService.create({ id: 2, name: "Sarah" });
+customerService.create({ id: 3, name: "Michael" });
+customerService.create({ id: 4, name: "Emily" });
+customerService.create({ id: 5, name: "David" });
+orderService.create({ id: 1, product: "Laptop" });
+orderService.create({ id: 2, product: "Cookies" });
+orderService.create({ id: 3, product: "Smartphone" });
+orderService.create({ id: 4, product: "Gaming Headset" });
+orderService.create({ id: 5, product: "Mechanical Keyboard" });
+orderService.create({ id: 6, product: "Portable Charger" });
+orderService.create({ id: 7, product: "USB Flash Drive" });
+orderService.create({ id: 8, product: "Wireless Mouse" });
+orderService.create({ id: 9, product: "Laptop" });
+orderService.create({ id: 10, product: "Smartphone" });
+productService.create({ id: 9, name: "Electric Iron" });
+productService.delete(1);
+productService.update(3, { id: 3, name: "Cookie Cutter" });
+console.log(customerService.findById(3));
+orderService.delete(7);
+console.log(productService.getAll());
+console.log(customerService.getAll());
+console.log(orderService.getAll());
+console.log(`
+    Products: ${productService.count()}
+    Customers: ${customerService.count()}
+    Orders: ${orderService.count()}
+    Total Amount: ${productService.count() + customerService.count() + orderService.count()}`);
 export {};
 //# sourceMappingURL=main.js.map
