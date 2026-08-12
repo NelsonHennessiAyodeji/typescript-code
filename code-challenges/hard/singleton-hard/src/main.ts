@@ -158,7 +158,7 @@ const cart: CartManager = CartManager.getInstance();
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cache Manager
 class CacheManager {
     private cache: Map<string, unknown> = new Map();
@@ -192,5 +192,27 @@ class CacheManager {
 
 const cache: CacheManager = CacheManager.getInstance();
 
-cache.set("user", {name: "James"});
-cache.set("products", {name: "products"});
+// cache.set("user", {name: "James"});
+// cache.set("products", {name: "products"});
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Authentication System
+class AuthManager {
+    private users: string[] = [];
+    private loggedInUser: string = "";
+    private token: string = "";
+    private static instance: AuthManager = new AuthManager();
+    private constructor(){};
+
+    // register()
+
+    // login()
+
+    // logout()
+
+    // changePassword()
+
+    // showUsers()
+}
