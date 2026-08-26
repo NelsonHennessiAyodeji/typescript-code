@@ -12,59 +12,54 @@ function addtwoNumbers(l1: (ListNode | null), l2: (ListNode | null)): (ListNode 
     let l3 = new ListNode();
     let current1: (ListNode | null) = l1;
     let current2: (ListNode | null) = l2;
-    let current3: (ListNode | null) = l3;
+    let current3: (ListNode | null) = l3; // serve as a proxy for the return ListNode object
     let carry = 0;
-    // TODO: Try G0 through the last cycle, the current imolemenattion stops at the second to the last
-    // not allow the code to repeat to calculate the last value for the last slots
-    // Instead of manually adding them. Maybe start by removing or working around the break
-    while ((current1 !== null) && (current2 !== null)) {
-        // console.log(current1);
-        // console.log(current2);
-        // console.log(l3);
 
-        // let carry = 0;
-        let sum = current1.val + current2.val + carry;
-        carry = Math.floor(sum / 10);
-        current3.val = sum;
+    while ((current1 !== null) || (current2 !== null)) {
+        let totalSum = (current1!.val + current2!.val + carry);
+        let operationSum = totalSum % 10; // the leftover number
+        carry = Math.floor(totalSum / 10);
+        current3.val = operationSum;
 
-        current1 = current1.next;
-        current2 = current2.next;
-        current3!.next = new ListNode();
-        if ((current1?.next === null) && (current2?.next === null)) {
-            if (carry === 1) {
-                current3!.next.next = new ListNode();
-                current3!.next!.next!.val = carry;
+        current1 = current1!.next;
+        current2 = current2!.next;
+        if ((current1 === null) && (current2 === null)) {
+            if (carry > 0) {
+                current3!.next = new ListNode();
+                current3!.next!.val = carry;
             }
-            current3!.next.val = sum;
             break;
-        } else {current3 = current3.next;}
+        } else {
+            current3!.next = new ListNode();
+            current3!.next.val = operationSum;
+            current3 = current3.next;
+        }
     }
-
     return l3;
 }
 
 const node: ListNode = new ListNode(2, new ListNode(3, new ListNode(2)));
 
-const node6 = new ListNode(9)
-const node5 = new ListNode(1, node6)
-const node4 = new ListNode(1, node5)
+const node10 = new ListNode(9);
+const node9 = new ListNode(9, node10);
+const node8 = new ListNode(9, node9);
+const node7 = new ListNode(9, node8);
+const node6 = new ListNode(9, node7);
+const node5 = new ListNode(9, node6);
+const node4 = new ListNode(9, node5);
 
-const node3 = new ListNode(9)
-const node2 = new ListNode(1, node3)
-const node1 = new ListNode(1, node2)
+const node12 = new ListNode(9);
+const node3 = new ListNode(9, node12);
+const node2 = new ListNode(9, node3);
+const node1 = new ListNode(9, node2);
 
-// console.log(node1.val)
-// console.log(node1.next?.val)
-// console.log(node1.next?.next?.val)
-// console.log(node1.next?.next?.next?.val)
-
-let node7 = addtwoNumbers(node1, node4);
-console.log(node7);
+let node11 = addtwoNumbers(node1, node4);
+console.log(node11);
 
 
-while (node7 !== null) {
-    console.log(node7.val);
-    node7 = node7.next;
+while (node11 !== null) {
+    console.log(node11.val);
+    node11 = node11.next;
 }
 
 // console.log(Math.floor(9 / 10));
