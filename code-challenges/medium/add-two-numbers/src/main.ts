@@ -15,14 +15,15 @@ function addtwoNumbers(l1: (ListNode | null), l2: (ListNode | null)): (ListNode 
     let current3: (ListNode | null) = l3; // serve as a proxy for the return ListNode object
     let carry = 0;
 
-    while ((current1 !== null) || (current2 !== null)) {
-        let totalSum = (current1!.val + current2!.val + carry);
+    // Everything works well, just have to account for figures whose digits are not equal in size/lenghts/units
+    while ((current1 !== null) && (current2 !== null)) {
+        let totalSum = (current1.val + current2.val + carry);
         let operationSum = totalSum % 10; // the leftover number
         carry = Math.floor(totalSum / 10);
         current3.val = operationSum;
 
-        current1 = current1!.next;
-        current2 = current2!.next;
+        current1 = current1.next;
+        current2 = current2.next;
         if ((current1 === null) && (current2 === null)) {
             if (carry > 0) {
                 current3!.next = new ListNode();
