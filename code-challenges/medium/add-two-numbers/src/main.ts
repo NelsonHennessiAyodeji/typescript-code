@@ -16,14 +16,20 @@ function addtwoNumbers(l1: (ListNode | null), l2: (ListNode | null)): (ListNode 
     let carry = 0;
 
     // Everything works well, just have to account for figures whose digits are not equal in size/lenghts/units
-    while ((current1 !== null) && (current2 !== null)) {
-        let totalSum = (current1.val + current2.val + carry);
+    while ((current1 !== null) || (current2 !== null)) {
+        if (current1 === null) {
+            current1 = new ListNode(0, null);
+        } else if (current2 === null) {
+            current2 = new ListNode(0, null);
+        }
+        
+        let totalSum = (current1!.val + current2!.val + carry);
         let operationSum = totalSum % 10; // the leftover number
         carry = Math.floor(totalSum / 10);
         current3.val = operationSum;
 
-        current1 = current1.next;
-        current2 = current2.next;
+        current1 = current1!.next;
+        current2 = current2!.next;
         if ((current1 === null) && (current2 === null)) {
             if (carry > 0) {
                 current3!.next = new ListNode();
@@ -58,9 +64,7 @@ let node11 = addtwoNumbers(node1, node4);
 console.log(node11);
 
 
-while (node11 !== null) {
-    console.log(node11.val);
-    node11 = node11.next;
-}
-
-// console.log(Math.floor(9 / 10));
+// while (node11 !== null) {
+//     console.log(node11.val);
+//     node11 = node11.next;
+// }
