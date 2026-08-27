@@ -11,15 +11,15 @@ function addtwoNumbers(l1, l2) {
     let l3 = new ListNode();
     let current1 = l1;
     let current2 = l2;
-    let current3 = l3; // serve as a proxy for the return ListNode object
+    let current3 = l3; // serve as a pointer for the return ListNode object
     let carry = 0;
-    // Everything works well, just have to account for figures whose digits are not equal in size/lenghts/units
     while ((current1 !== null) || (current2 !== null)) {
+        // When there is a uneven lenght od numbers
         if (current1 === null) {
-            current1 = new ListNode(0, null);
+            current1 = new ListNode();
         }
         else if (current2 === null) {
-            current2 = new ListNode(0, null);
+            current2 = new ListNode();
         }
         let totalSum = (current1.val + current2.val + carry);
         let operationSum = totalSum % 10; // the leftover number
@@ -28,6 +28,7 @@ function addtwoNumbers(l1, l2) {
         current1 = current1.next;
         current2 = current2.next;
         if ((current1 === null) && (current2 === null)) {
+            // This code runs at the end of list node
             if (carry > 0) {
                 current3.next = new ListNode();
                 current3.next.val = carry;
@@ -36,7 +37,6 @@ function addtwoNumbers(l1, l2) {
         }
         else {
             current3.next = new ListNode();
-            current3.next.val = operationSum;
             current3 = current3.next;
         }
     }
