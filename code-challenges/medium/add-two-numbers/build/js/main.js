@@ -21,6 +21,9 @@ function addtwoNumbers(l1, l2) {
         else if (current2 === null) {
             current2 = new ListNode();
         }
+        // At this point I should not be getting warnings that forces me to use non-null assertions 
+        // Since from this block, current 1 and 2 should be populated. But for some weird reasons, 
+        // TS is still nagging me, hence the non-null assertions.
         let totalSum = (current1.val + current2.val + carry);
         let operationSum = totalSum % 10; // the leftover number
         carry = Math.floor(totalSum / 10);
@@ -33,7 +36,6 @@ function addtwoNumbers(l1, l2) {
                 current3.next = new ListNode();
                 current3.next.val = carry;
             }
-            break;
         }
         else {
             current3.next = new ListNode();
