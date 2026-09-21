@@ -5,8 +5,22 @@ function longestCommonPrefix(strs) {
     let prefix = "";
     do {
         let i = 0;
+        let j = 0;
         for (i; i < strs.length; i++) {
-            p.push(strs[i]?.charAt(i));
+            const currentLetter = strs[i]?.charAt(j);
+            if (currentLetter)
+                p.push(currentLetter);
+            else {
+                i = -1;
+                break;
+            }
+        }
+        if (i === strs.length && i !== -1) {
+            i = 0;
+            j++;
+        }
+        else if (i === -1) {
+            break;
         }
         // prefix += ;
     } while (equalLetterCheck(p)[0]);
