@@ -3,13 +3,15 @@ const strs = ["flower", "flow", "flight"];
 function longestCommonPrefix(strs) {
     let p = [];
     let prefix = "";
+    let check2 = [];
+    let i = 0;
+    let j = 0;
     do {
-        let i = 0;
-        let j = 0;
         for (i; i < strs.length; i++) {
             const currentLetter = strs[i]?.charAt(j);
-            if (currentLetter)
+            if (currentLetter) {
                 p.push(currentLetter);
+            }
             else {
                 i = -1;
                 break;
@@ -22,15 +24,21 @@ function longestCommonPrefix(strs) {
         else if (i === -1) {
             break;
         }
-        // prefix += ;
-    } while (equalLetterCheck(p)[0]);
+        let check = equalLetterCheck(p);
+        if (check[0]) {
+            prefix += check[1];
+        }
+        p = [];
+        check2 = check;
+    } while (check2[0]);
     return prefix;
 }
 ;
 function equalLetterCheck(lts) {
     let letter = "";
-    if (lts.length === 1)
+    if (lts.length === 1) {
         return [true, lts[0]];
+    }
     for (let i = 0; i < lts.length; i++) {
         if (i !== (lts.length - 1)) {
             if (lts[i] !== lts[i + 1]) {
@@ -42,8 +50,9 @@ function equalLetterCheck(lts) {
             }
         }
     }
-    if (letter)
+    if (letter) {
         return [true, letter];
+    }
     else
         return [false];
 }
