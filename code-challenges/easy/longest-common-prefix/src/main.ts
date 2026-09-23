@@ -1,6 +1,5 @@
 const strs = ["flower","flow","flight"];
 
-// Confused
 function longestCommonPrefix(strs: string[]): string {
     let p: string[] = [];
     let prefix = "";
@@ -62,3 +61,25 @@ function equalLetterCheck(lts: string[]): (boolean|string)[] {
 }
 
 console.log(longestCommonPrefix(strs));
+
+
+// console.log("HI");
+
+// const strs = ["flower","flow","flight"];
+
+// // Confused
+// function longestCommonPrefix(strs: string[]): string {
+//     let prefix: string = "";
+//     let l: string = "";
+//     let i = 0;
+//     let j = 0;
+
+//     while (true) {
+//         if (!strs[i]?.charAt(j)) break;
+
+//         for (j; j < strs.length; j++) {
+//             l = strs[i]?.charAt(j);
+//             if (j)
+//         }
+//     }
+// }
